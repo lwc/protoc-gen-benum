@@ -89,20 +89,20 @@ func (e {{ name . }}) IsValid() bool {
 
 // ------------------------- gqlgen ----------------------------------
 
-var {{ name . }}_gql_name = map[int32]string{
+var gql_{{ name . }}_name = map[int32]string{
 {{ range .Values -}}
 	{{ .Value }}: "{{ gqlVal . }}",
 {{ end }}
 }
 
-var {{ name . }}_gql_value = map[string]int32{
+var gql_{{ name . }}_value = map[string]int32{
 {{ range .Values -}}
 	"{{ gqlVal . }}": {{ .Value }},
 {{ end }}
 }
 
 func (e {{ name . }}) MarshalGQL(w io.Writer) {
-	fmt.Fprint(w, strconv.Quote({{ name . }}_gql_name[int32(e)]))
+	fmt.Fprint(w, strconv.Quote(gql_{{ name . }}_name[int32(e)]))
 }
 
 func (e *{{ name . }}) UnmarshalGQL(v interface{}) error {
@@ -110,7 +110,7 @@ func (e *{{ name . }}) UnmarshalGQL(v interface{}) error {
 	if !ok {
 		return fmt.Errorf("%T is not a valid {{ name . }}", v)
 	}
-	res, ok := {{ name . }}_gql_value[value]
+	res, ok := gql_{{ name . }}_value[value]
 	if !ok {
 		return fmt.Errorf("%T is not a valid {{ name . }}", v)
 	}
@@ -120,13 +120,13 @@ func (e *{{ name . }}) UnmarshalGQL(v interface{}) error {
 
 // --------------------------- db ------------------------------------
 
-var {{ name . }}_db_name = map[int32]string{
+var db_{{ name . }}_name = map[int32]string{
 {{ range .Values -}}
 	{{ .Value }}: "{{ dbVal . }}",
 {{ end }}
 }
 
-var {{ name . }}_db_value = map[string]int32{
+var db_{{ name . }}_value = map[string]int32{
 {{ range .Values -}}
 	"{{ dbVal . }}": {{ .Value }},
 {{ end }}
@@ -136,7 +136,7 @@ func (e {{ name . }}) Value() (driver.Value, error) {
 	if !e.IsValid() {
 		return nil, fmt.Errorf("invalid {{ name . }} '%s'", e)
 	}
-	return {{ name . }}_db_name[int32(e)], nil
+	return db_{{ name . }}_name[int32(e)], nil
 }
 
 func (e *{{ name . }}) Scan(value interface{}) error {
@@ -147,9 +147,9 @@ func (e *{{ name . }}) Scan(value interface{}) error {
 	res, ok := int32(0), false
 	switch v := sv.(type) {
 	case string:
-		res, ok = {{ name . }}_db_value[v]
+		res, ok = db_{{ name . }}_value[v]
 	case []byte:
-		res, ok = {{ name . }}_db_value[string(v)]
+		res, ok = db_{{ name . }}_value[string(v)]
 	default:
 		panic("unexpected type from ConvertValue")
 	}

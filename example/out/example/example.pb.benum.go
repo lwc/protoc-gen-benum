@@ -18,20 +18,20 @@ func (e Enum1) IsValid() bool {
 
 // ------------------------- gqlgen ----------------------------------
 
-var Enum1_gql_name = map[int32]string{
+var gql_Enum1_name = map[int32]string{
 	0: "turkey",
 	1: "BILLING",
 	2: "blarg",
 }
 
-var Enum1_gql_value = map[string]int32{
+var gql_Enum1_value = map[string]int32{
 	"turkey":  0,
 	"BILLING": 1,
 	"blarg":   2,
 }
 
 func (e Enum1) MarshalGQL(w io.Writer) {
-	fmt.Fprint(w, strconv.Quote(Enum1_gql_name[int32(e)]))
+	fmt.Fprint(w, strconv.Quote(gql_Enum1_name[int32(e)]))
 }
 
 func (e *Enum1) UnmarshalGQL(v interface{}) error {
@@ -39,7 +39,7 @@ func (e *Enum1) UnmarshalGQL(v interface{}) error {
 	if !ok {
 		return fmt.Errorf("%T is not a valid Enum1", v)
 	}
-	res, ok := Enum1_gql_value[value]
+	res, ok := gql_Enum1_value[value]
 	if !ok {
 		return fmt.Errorf("%T is not a valid Enum1", v)
 	}
@@ -49,13 +49,13 @@ func (e *Enum1) UnmarshalGQL(v interface{}) error {
 
 // --------------------------- db ------------------------------------
 
-var Enum1_db_name = map[int32]string{
+var db_Enum1_name = map[int32]string{
 	0: "snake",
 	1: "BILLING",
 	2: "LEGAL",
 }
 
-var Enum1_db_value = map[string]int32{
+var db_Enum1_value = map[string]int32{
 	"snake":   0,
 	"BILLING": 1,
 	"LEGAL":   2,
@@ -65,7 +65,7 @@ func (e Enum1) Value() (driver.Value, error) {
 	if !e.IsValid() {
 		return nil, fmt.Errorf("invalid Enum1 '%s'", e)
 	}
-	return Enum1_db_name[int32(e)], nil
+	return db_Enum1_name[int32(e)], nil
 }
 
 func (e *Enum1) Scan(value interface{}) error {
@@ -76,9 +76,9 @@ func (e *Enum1) Scan(value interface{}) error {
 	res, ok := int32(0), false
 	switch v := sv.(type) {
 	case string:
-		res, ok = Enum1_db_value[v]
+		res, ok = db_Enum1_value[v]
 	case []byte:
-		res, ok = Enum1_db_value[string(v)]
+		res, ok = db_Enum1_value[string(v)]
 	default:
 		panic("unexpected type from ConvertValue")
 	}
@@ -100,20 +100,20 @@ func (e EchoResponse_Enum2) IsValid() bool {
 
 // ------------------------- gqlgen ----------------------------------
 
-var EchoResponse_Enum2_gql_name = map[int32]string{
+var gql_EchoResponse_Enum2_name = map[int32]string{
 	0: "PROFILE",
 	1: "BILLING",
 	2: "LEGAL",
 }
 
-var EchoResponse_Enum2_gql_value = map[string]int32{
+var gql_EchoResponse_Enum2_value = map[string]int32{
 	"PROFILE": 0,
 	"BILLING": 1,
 	"LEGAL":   2,
 }
 
 func (e EchoResponse_Enum2) MarshalGQL(w io.Writer) {
-	fmt.Fprint(w, strconv.Quote(EchoResponse_Enum2_gql_name[int32(e)]))
+	fmt.Fprint(w, strconv.Quote(gql_EchoResponse_Enum2_name[int32(e)]))
 }
 
 func (e *EchoResponse_Enum2) UnmarshalGQL(v interface{}) error {
@@ -121,7 +121,7 @@ func (e *EchoResponse_Enum2) UnmarshalGQL(v interface{}) error {
 	if !ok {
 		return fmt.Errorf("%T is not a valid EchoResponse_Enum2", v)
 	}
-	res, ok := EchoResponse_Enum2_gql_value[value]
+	res, ok := gql_EchoResponse_Enum2_value[value]
 	if !ok {
 		return fmt.Errorf("%T is not a valid EchoResponse_Enum2", v)
 	}
@@ -131,13 +131,13 @@ func (e *EchoResponse_Enum2) UnmarshalGQL(v interface{}) error {
 
 // --------------------------- db ------------------------------------
 
-var EchoResponse_Enum2_db_name = map[int32]string{
+var db_EchoResponse_Enum2_name = map[int32]string{
 	0: "PROFILE",
 	1: "billing",
 	2: "LEGAL",
 }
 
-var EchoResponse_Enum2_db_value = map[string]int32{
+var db_EchoResponse_Enum2_value = map[string]int32{
 	"PROFILE": 0,
 	"billing": 1,
 	"LEGAL":   2,
@@ -147,7 +147,7 @@ func (e EchoResponse_Enum2) Value() (driver.Value, error) {
 	if !e.IsValid() {
 		return nil, fmt.Errorf("invalid EchoResponse_Enum2 '%s'", e)
 	}
-	return EchoResponse_Enum2_db_name[int32(e)], nil
+	return db_EchoResponse_Enum2_name[int32(e)], nil
 }
 
 func (e *EchoResponse_Enum2) Scan(value interface{}) error {
@@ -158,9 +158,9 @@ func (e *EchoResponse_Enum2) Scan(value interface{}) error {
 	res, ok := int32(0), false
 	switch v := sv.(type) {
 	case string:
-		res, ok = EchoResponse_Enum2_db_value[v]
+		res, ok = db_EchoResponse_Enum2_value[v]
 	case []byte:
-		res, ok = EchoResponse_Enum2_db_value[string(v)]
+		res, ok = db_EchoResponse_Enum2_value[string(v)]
 	default:
 		panic("unexpected type from ConvertValue")
 	}
