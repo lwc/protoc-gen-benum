@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package benum;
+
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.EnumValueOptions {
+    string db = 50003;
+    string gql = 50004;
+}

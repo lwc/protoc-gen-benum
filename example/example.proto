@@ -1,0 +1,31 @@
+syntax = "proto3";
+package ninety_nine.sdk.test;
+
+option go_package = "testpb";
+
+import "benum.proto";
+
+enum Enum1 {
+    PROFILE = 0 [(benum.db)="snake", (benum.gql)="turkey"];
+    BILLING = 1;
+    LEGAL = 2[(benum.gql)="blarg"];
+}
+
+service Accounts {
+    rpc Echo (EchoRequest) returns (EchoResponse);
+}
+
+message EchoRequest {
+    string message = 1;
+    Enum1 turkey = 2;
+}
+
+message EchoResponse {
+    string message = 1;
+    Enum2 snakes = 2;
+    enum Enum2 {
+        PROFILE = 0;
+        BILLING = 1[(benum.db)="billing"];
+        LEGAL = 2;
+    }
+}
