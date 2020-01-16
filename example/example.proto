@@ -1,7 +1,7 @@
 syntax = "proto3";
 package ninety_nine.sdk.test;
 
-option go_package = "testpb";
+option go_package = "example";
 
 import "benum.proto";
 
