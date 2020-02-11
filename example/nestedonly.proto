@@ -5,22 +5,15 @@ option go_package = "example";
 
 import "benum.proto";
 
-enum Enum1 {
-    PROFILE = 0 [(benum.db)="snake", (benum.gql)="turkey"];
-    BILLING = 1;
-    LEGAL = 2[(benum.gql)="blarg"];
+service SecondService {
+    rpc Echo (InRequest) returns (OutResponse);
 }
 
-service Service {
-    rpc Echo (EchoRequest) returns (EchoResponse);
-}
-
-message EchoRequest {
+message InRequest {
     string message = 1;
-    Enum1 turkey = 2;
 }
 
-message EchoResponse {
+message OutResponse {
     string message = 1;
     Enum2 snakes = 2;
     enum Enum2 {

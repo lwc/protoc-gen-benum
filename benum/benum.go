@@ -41,7 +41,7 @@ func (p *module) Execute(targets map[string]pgs.File, pkgs map[string]pgs.Packag
 }
 
 func (p *module) generate(f pgs.File) {
-	if len(f.Enums()) == 0 {
+	if len(f.AllEnums()) == 0 {
 		return
 	}
 
