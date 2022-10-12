@@ -1,10 +1,10 @@
 module github.com/lwc/protoc-gen-benum
 
-go 1.13
+go 1.16
 
 require (
-	github.com/golang/protobuf v1.3.2
-	github.com/lyft/protoc-gen-star v0.4.12
-	github.com/spf13/afero v1.2.2 // indirect
-	github.com/stretchr/testify v1.4.0 // indirect
+	github.com/lyft/protoc-gen-star v0.6.1
+	github.com/spf13/afero v1.8.1 // indirect
+	golang.org/x/text v0.3.7 // indirect
+	google.golang.org/protobuf v1.28.1
 )
